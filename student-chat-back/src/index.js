@@ -1,5 +1,6 @@
 const app = require('./app')
+const config = require('./config')
 
-app.listen(app.get('port'),()=>{
-    console.log(`Server running in port : ${app.get('port')}`)
+app.listen(config.app.port,()=>{
+    console.log(`Server running in port : ${config.app.port}`)
 })

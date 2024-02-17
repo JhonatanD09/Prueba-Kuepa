@@ -28,7 +28,9 @@ const valideResult = (result, res) =>{
             ,{expiresIn : config.app.expired})
         res.status(200).json({
             token: token,
-            user: result[0]
+            userName: result[0].userName,
+            name: result[0].name,
+            rol: result[0].rol
         })
     }else{
         res.status(400).json({error:"User no found"})

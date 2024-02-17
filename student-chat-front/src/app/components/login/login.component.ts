@@ -35,5 +35,6 @@ export class LoginComponent {
         console.log(err)
       }
     })
+    // this.router.navigateByUrl('chat')
   }
 }
