@@ -10,6 +10,6 @@ export class MessageServiceService {
   constructor(private http : HttpClient) { }
 
   saveMessage(message : Message){
-    return this.http.post('',message)
+    return this.http.post('/messages/add',message)
   }
 }
