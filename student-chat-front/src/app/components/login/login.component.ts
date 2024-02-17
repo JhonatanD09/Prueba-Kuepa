@@ -1,24 +1,39 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { HttpClientModule} from '@angular/common/http';
+import { LocalStorageService } from '../../services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,HttpClientModule],
+  providers : [HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
-  email: string = '';
+  userName: string = '';
   password: string = '';
 
-  constructor(private router :Router) {}
+  constructor(
+    private router :Router,
+    private authService : AuthService,
+    private localStorage :LocalStorageService
+    ) {}
 
   login() {
-    console.log(this.email);
-    console.log(this.password);
-    this.router.navigateByUrl('chat')
+    this.authService.login(this.userName, this.password).subscribe({
+      next:(res)=>{
+        console.log(res)
+        this.localStorage.saveData(res)
+        this.router.navigateByUrl('chat')
+      },
+      error: (err) =>{
+        console.log(err)
+      }
+    })
   }
 }
