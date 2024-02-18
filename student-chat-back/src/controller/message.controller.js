@@ -10,8 +10,7 @@ const addMessage = async (req, res) =>{
             }else{
             const objSend = {text: message, idUser:user[0][0].iduser}
             let query =(await pool).query('INSERT INTO MESSAGES SET ?',objSend)
-            query.then((result)=>{
-                console.log(result)
+            query.then(()=>{
                 res.status(200).json({ok:"mensaje guardado"})
             }).catch((err)=>{
                 console.log(err)

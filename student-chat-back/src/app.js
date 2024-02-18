@@ -5,18 +5,20 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 const app = express()
 const http = createServer(app);
-const io = new Server(http, { cors: { origin: '*' }});
+const io = new Server(http, { cors: { origin: true , credentials: true, methods :["GET", "POST"] }});
 
 //socket
 io.on('connection',(socket)=>{
     console.log('conected')
 
-    socket.emit('server','conectado')
+    // socket.emit('server','conectado')
 
     socket.on('recept',(data)=>{
         console.log(data)
+        socket._cleanup
         socket.broadcast.emit('send', data)
     })
+
 })
 app.use(express.json())
 

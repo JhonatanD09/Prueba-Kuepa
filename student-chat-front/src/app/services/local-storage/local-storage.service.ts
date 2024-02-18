@@ -19,4 +19,8 @@ export class LocalStorageService {
             name: localStorage.getItem('name'),
             rol : localStorage.getItem('rol')}
   }
+
+  deleteData(){
+    localStorage.clear()
+  }
 }

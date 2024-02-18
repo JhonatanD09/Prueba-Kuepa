@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
@@ -13,10 +13,14 @@ import { LocalStorageService } from '../../services/local-storage/local-storage.
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   userName: string = '';
   password: string = '';
+
+  ngOnInit(): void {
+    this.localStorage.deleteData()
+  }
 
   constructor(
     private router :Router,

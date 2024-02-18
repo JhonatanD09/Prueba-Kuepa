@@ -14,16 +14,25 @@ export class CreateUserComponent {
 
   name :string = ''
   userName :string = ''
-  type :string = ''
+  type : string = ''
   password :string = ''
+  userInvalid: boolean = false
 
 
   constructor(
     private router :Router,
     private userService : UserService
-    ) {}
+    ) {
+    }
+
+
+
+    onSelected(rol:string){
+      this.type = rol
+    }
 
   create() {
+    console.log(this.type)
     this.userService.createUser(this.userName,this.name,this.type,this.password).subscribe(
       {
         next:(res)=>{
@@ -31,6 +40,8 @@ export class CreateUserComponent {
           console.log(res)
         },
         error: (err) =>{
+          this.userInvalid = true
+          alert(this.userInvalid)
           console.log(err)
         }
       }

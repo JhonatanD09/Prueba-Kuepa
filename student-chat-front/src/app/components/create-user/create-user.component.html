@@ -1,3 +1,11 @@
+@if(userInvalid){
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+}
 <div class="create">
     <form class="custom-form" method="post">
       <h1>Crear usuario</h1>
@@ -15,13 +23,18 @@
         placeholder="Nombre de usuario"
         required="required"
       />
-       <input
-        type="text"
+
+       <!-- <input
+        type=""
         [(ngModel)]="type"
         name="type"
         placeholder="Tipo de usuario"
         required="required"
-      />
+      /> -->
+      <select #rols (change)="onSelected(rols.value)">
+        <option value="Estudiante">Estudiante</option>
+        <option value="Moderador"> Moderador</option>
+      </select>
         <input
         type="password"
         [(ngModel)]="password"
@@ -30,6 +43,6 @@
         required="required"
         />
       <button type="submit" (click)="create()">Crear</button>
-      
     </form>
   </div>
+
