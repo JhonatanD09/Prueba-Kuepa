@@ -41,10 +41,13 @@ export class CreateUserComponent {
         },
         error: (err) =>{
           this.userInvalid = true
-          alert(this.userInvalid)
           console.log(err)
         }
       }
     )
+  }
+
+  close(){
+    this.userInvalid = false
   }
 }

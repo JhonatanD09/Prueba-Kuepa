@@ -1,3 +1,11 @@
+@if(userFound){
+  <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+    <strong>Usuario no encontrado</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="close()" id="close-btn">
+      X
+    </button>
+  </div>
+}
 <div class="login">
     <form class="custom-form" method="post">
       <h1>Inicion de sesion</h1>

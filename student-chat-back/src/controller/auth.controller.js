@@ -4,7 +4,7 @@ import pool from '../dataBase/mysql'
 
 const  login = async (req,res )=>{
     const data = req.body
-
+    console.log(data)
     try {
         const result = (await pool).query('SELECT * FROM USERS WHERE userName = ?', data.userName)
         result.then((result)=>[
@@ -21,7 +21,8 @@ const  login = async (req,res )=>{
 }
 
 const valideResult = (result, res) =>{
-    if(result){
+    if(result.length > 0){
+        console.log(result)
         const token = jwt.sign(
             {id: result.id},
             config.app.secret

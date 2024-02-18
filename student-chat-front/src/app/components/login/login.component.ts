@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit{
 
   userName: string = '';
   password: string = '';
+  userFound: boolean = false
 
   ngOnInit(): void {
     this.localStorage.deleteData()
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit{
     ) {}
 
   login() {
+    console.log(this.userName)
     this.authService.login(this.userName, this.password).subscribe({
       next:(res)=>{
         console.log(res)
@@ -36,9 +38,14 @@ export class LoginComponent implements OnInit{
         this.router.navigateByUrl('chat')
       },
       error: (err) =>{
+        this.userFound = true
         console.log(err)
       }
     })
     // this.router.navigateByUrl('chat')
+  }
+
+  close(){
+    this.userFound = false
   }
 }
