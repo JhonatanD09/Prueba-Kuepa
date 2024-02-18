@@ -1,1 +1,55 @@
-<p>student-chat works!</p>
+<div class="conten-chat">
+    <div class="video-chat">
+        <iframe class="video" width="100%" height="100%" src="https://www.youtube.com/embed/nKPbfIU442g?si=kKdd4iZ5SWAqx5Hl" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen></iframe>
+    </div>
+    <div class="chat">
+        <div class="chat-messages">
+            <div class="user-name">
+                <i class="bi bi-person-circle"  width="40" height="150" id="icon"></i>
+                <span ><h3>{{user.userName}}  ({{user.rol}})</h3></span>
+            </div>
+            <div class="chats">
+                @for(item of list; track item.userName){
+                    @if(!item.userActual){
+                        <div class="message-other">
+                            <span>
+                                <h6>{{item.userName}}
+                                @if(item.rol === 'Moderador'){
+                                    (Moderador)
+                                }
+                            </h6>
+                            </span>
+                            <span><h4>{{item.message}}</h4></span>
+                            <span><h6>{{item.hour}}</h6></span>
+                        </div>   
+                    } 
+                    @if(item.userActual){
+                        <div class="message">
+                            <span>
+                                <h6>Tu 
+                                    @if(item.rol === 'Moderador'){
+                                        (Moderador)
+                                    }
+                                </h6>
+                            </span>
+                        
+                            <span><h4>{{item.message}}</h4></span>
+                            <span><h6>{{item.hour}}</h6></span>
+                        </div>   
+                    }   
+                }
+            </div>
+        </div>
+        <div class="input-group mb-3" id="send-message">
+            <input type="text" class="form-control" 
+            placeholder="Ingresa tu mensaje" [(ngModel)]="messageInput"
+            aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button type="button" class="btn btn-success" (click)="sendMessage()">Enviar</button>
+            </div>
+          </div>
+    </div>
+</div>
