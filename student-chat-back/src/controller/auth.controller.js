@@ -4,11 +4,10 @@ import pool from '../dataBase/mysql'
 
 const  login = async (req,res )=>{
     const data = req.body
-    console.log(data)
     try {
         const result = (await pool).query('SELECT * FROM USERS WHERE userName = ?', data.userName)
         result.then((result)=>[
-            valideResult(result[0], res)
+            valideResult(result[0], res, data)
         ]).catch((err)=>{
             console.log(err)
         })
@@ -20,21 +19,24 @@ const  login = async (req,res )=>{
     
 }
 
-const valideResult = (result, res) =>{
+const valideResult = (result, res , data) =>{
     if(result.length > 0){
-        console.log(result)
-        const token = jwt.sign(
-            {id: result.id},
-            config.app.secret
-            ,{expiresIn : config.app.expired})
-        res.status(200).json({
-            token: token,
-            userName: result[0].userName,
-            name: result[0].name,
-            rol: result[0].rol
-        })
+        if(result[0].password == data.password){
+            const token = jwt.sign(
+                {id: result[0].id},
+                config.app.secret
+                ,{expiresIn : config.app.expired})
+            res.status(200).json({
+                token: token,
+                userName: result[0].userName,
+                name: result[0].name,
+                rol: result[0].rol
+            })
+        }else{
+            res.status(402).json({error:"Contraseña incorrecta"})
+        }
     }else{
-        res.status(400).json({error:"User no found"})
+        res.status(400).json({error:"Usuario no encontrado"})
     }
 }
 module.exports = {

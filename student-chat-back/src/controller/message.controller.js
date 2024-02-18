@@ -6,12 +6,12 @@ const addMessage = async (req, res) =>{
     queryUser.then(async (result)=>{
         let user = result
             if(user[0]==0){
-                res.status(400).json({message:'Usuario no encontrado'})
+                res.status(404).json({message:'Usuario no encontrado'})
             }else{
             const objSend = {text: message, idUser:user[0][0].iduser}
             let query =(await pool).query('INSERT INTO MESSAGES SET ?',objSend)
             query.then(()=>{
-                res.status(200).json({ok:"mensaje guardado"})
+                res.status(200).json({ok:"Mensaje guardado"})
             }).catch((err)=>{
                 console.log(err)
                 res.status(400).json({error: "Mensaje no guardado"})

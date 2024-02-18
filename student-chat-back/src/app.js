@@ -3,6 +3,8 @@ const config = require('./config')
 import { Console } from "console";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import { SWAGGER_SERVE, SWAGGER_SETUP } from './configs/swagger.config';
+
 const app = express()
 const http = createServer(app);
 const io = new Server(http, { cors: { origin: true , credentials: true, methods :["GET", "POST"] }});
@@ -26,5 +28,6 @@ app.use(express.json())
 app.use('/api/auth',require('./routes/auth.routes'))
 app.use('/api/users',require('./routes/user.routes'))
 app.use('/api/messages',require('./routes/message.routes'))
+app.use('/api-doc', SWAGGER_SERVE, SWAGGER_SETUP);
 
 module.exports = http
