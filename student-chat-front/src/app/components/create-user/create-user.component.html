@@ -1,0 +1,48 @@
+@if(userInvalid){
+  <div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">
+    <strong>Nombre de usuario no disponible</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="close()" id="close-btn">
+      X
+    </button>
+  </div>
+}
+<div class="create">
+    <form class="custom-form" method="post">
+      <h1>Crear usuario</h1>
+      <input
+        type="text"
+        [(ngModel)]="name"
+        name="name"
+        placeholder="Nombre"
+        required="required"
+      />
+      <input
+        type="text"
+        [(ngModel)]="userName"
+        name="userName"
+        placeholder="Nombre de usuario"
+        required="required"
+      />
+
+       <!-- <input
+        type=""
+        [(ngModel)]="type"
+        name="type"
+        placeholder="Tipo de usuario"
+        required="required"
+      /> -->
+      <select #rols (change)="onSelected(rols.value)">
+        <option value="Estudiante">Estudiante</option>
+        <option value="Moderador"> Moderador</option>
+      </select>
+        <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Password"
+        required="required"
+        />
+      <button type="submit" (click)="create()">Crear</button>
+    </form>
+  </div>
+
