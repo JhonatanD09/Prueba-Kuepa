@@ -14,7 +14,7 @@ export class CreateUserComponent {
 
   name :string = ''
   userName :string = ''
-  type : string = ''
+  type : string = 'Estudiante'
   password :string = ''
   userInvalid: boolean = false
 
@@ -33,6 +33,7 @@ export class CreateUserComponent {
 
   create() {
     console.log(this.type)
+
     this.userService.createUser(this.userName,this.name,this.type,this.password).subscribe(
       {
         next:(res)=>{

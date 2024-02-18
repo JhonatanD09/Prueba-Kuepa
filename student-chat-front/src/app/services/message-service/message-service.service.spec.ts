@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { MessageServiceService } from './message-service.service';
 
 describe('MessageServiceService', () => {
@@ -13,4 +12,5 @@ describe('MessageServiceService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
 });

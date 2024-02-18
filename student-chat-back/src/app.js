@@ -11,9 +11,6 @@ const io = new Server(http, { cors: { origin: true , credentials: true, methods 
 
 //socket
 io.on('connection',(socket)=>{
-    console.log('conected')
-
-    // socket.emit('server','conectado')
 
     socket.on('recept',(data)=>{
         console.log(data)
